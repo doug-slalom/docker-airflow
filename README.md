@@ -8,6 +8,49 @@
 
 This repository contains **Dockerfile** of [apache-airflow](https://github.com/apache/incubator-airflow) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/puckel/docker-airflow/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
 
+It is important to note that this repository is a clone of https://github.com/puckel/docker-airflow and adapted for quick setup purposes. Original information can either be found under the Informations section which has been left intact below or at the link provided above. 
+
+## Usage
+The following components will need to be downloaded prior to beginning the setup process - 
+* Install [Docker](https://www.docker.com/)
+* Install [Docker Compose](https://docs.docker.com/compose/install/)
+
+Now that Docker and Docker Compose are installed, please do the following:
+1) Navigate to a directory where the project is to be housed.
+2) Run the following commands:
+```
+docker pull puckel/docker-airflow
+git clone https://github.com/doug-slalom/docker-airflow.git
+```
+3) Rename the directory as you please and navigate into the directory. The following commands assume that the directory name *has not* been changed. 
+```
+cd docker-airflow
+docker-compose -f docker-compose-CeleryExecutor.yml up
+```
+If the user does not wish to see the webserver logs, they may use the following command for docker-compose
+```
+docker-compose -f docker-compose-CeleryExecutor.yml up -d
+```
+
+It is important to note the following changes from the original puckel-airflow library:
+1) Both of the Local and Celery Executors have volumes attached the them that mount the requirements.txt file to the image.
+2) A requirements.txt file that contains all of the packages has been added to the repository. The following packages have been added to the requirements.txt file as a proof-of-concept:
+```
+pandas
+boto3
+requests
+```
+It is highly advised that the user update this file to contain all of the packages that they will require. 
+
+If there is an issue with the service and it needs to be restarted or the user must modify the docker-compose files, they will need to first bring the service down via the following command - 
+```
+docker-compose -f docker-compose-CeleryExecutor.yml down
+```
+They can then bring the service back up via 
+```
+docker-compose -f docker-compose-CeleryExecutor.yml up
+```
+
 ## Informations
 
 * Based on Python (3.7-slim-buster) official Image [python:3.7-slim-buster](https://hub.docker.com/_/python/) and uses the official [Postgres](https://hub.docker.com/_/postgres/) as backend and [Redis](https://hub.docker.com/_/redis/) as queue
