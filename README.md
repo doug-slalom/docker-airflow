@@ -8,6 +8,25 @@
 
 This repository contains **Dockerfile** of [apache-airflow](https://github.com/apache/incubator-airflow) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/puckel/docker-airflow/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
 
+It is important to note that this repository is a clone of https://github.com/puckel/docker-airflow and adapted for quick setup purposes. Original information can either be found under the Informations section which has been left intact below or at the link provided above. 
+
+## Usage
+The following components will need to be downloaded prior to beginning the setup process - 
+* Install [Docker](https://www.docker.com/)
+* Install [Docker Compose](https://docs.docker.com/compose/install/)
+
+Now that Docker and Docker Compose are installed, please do the following:
+1) Navigate to a directory where the project is to be housed.
+2) Run the following commands:
+```
+docker pull puckel/docker-airflow
+git clone https://github.com/puckel/docker-airflow.git
+```
+cd docker-airflow
+docker-compose -f docker-compose-CeleryExecutor.yml up
+
+
+
 ## Informations
 
 * Based on Python (3.7-slim-buster) official Image [python:3.7-slim-buster](https://hub.docker.com/_/python/) and uses the official [Postgres](https://hub.docker.com/_/postgres/) as backend and [Redis](https://hub.docker.com/_/redis/) as queue
