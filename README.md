@@ -20,12 +20,36 @@ Now that Docker and Docker Compose are installed, please do the following:
 2) Run the following commands:
 ```
 docker pull puckel/docker-airflow
-git clone https://github.com/puckel/docker-airflow.git
+git clone https://github.com/doug-slalom/docker-airflow.git
+```
+3) Rename the directory as you please and navigate into the directory. The following commands assume that the directory name *has not* been changed. 
 ```
 cd docker-airflow
 docker-compose -f docker-compose-CeleryExecutor.yml up
+```
+If the user does not wish to see the webserver logs, they may use the following command for docker-compose
+```
+docker-compose -f docker-compose-CeleryExecutor.yml up -d
+```
 
+It is important to note the following changes from the original puckel-airflow library:
+1) Both of the Local and Celery Executors have volumes attached the them that mount the requirements.txt file to the image.
+2) A requirements.txt file that contains all of the packages has been added to the repository. The following packages have been added to the requirements.txt file as a proof-of-concept:
+```
+pandas
+boto3
+requests
+```
+It is highly advised that the user update this file to contain all of the packages that they will require. 
 
+If there is an issue with the service and it needs to be restarted or the user must modify the docker-compose files, they will need to first bring the service down via the following command - 
+```
+docker-compose -f docker-compose-CeleryExecutor.yml down
+```
+They can then bring the service back up via 
+```
+docker-compose -f docker-compose-CeleryExecutor.yml up
+```
 
 ## Informations
 
