@@ -31,6 +31,7 @@ If the user does not wish to see the webserver logs, they may use the following 
 ```
 docker-compose -f docker-compose-CeleryExecutor.yml up -d
 ```
+4) Navigate to http://localhost:8080/admin/ to see the instance of Airflow running.
 
 It is important to note the following changes from the original puckel-airflow library:
 1) Both of the Local and Celery Executors have volumes attached the them that mount the requirements.txt file to the image.
