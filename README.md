@@ -40,7 +40,7 @@ pandas
 boto3
 requests
 ```
-It is highly advised that the user update this file to contain all of the packages that they will require. 
+It is highly advised that the user update this file to contain all of the packages that they will require. These packages will be installed via the entrypoints.sh script that sits in the /scripts folder
 
 If there is an issue with the service and it needs to be restarted or the user must modify the docker-compose files, they will need to first bring the service down via the following command - 
 ```
